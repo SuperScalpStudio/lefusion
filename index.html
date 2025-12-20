@@ -24,9 +24,8 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        /* 確保點擊跳轉時，標題不會被固定導覽列遮擋 */
         section {
-            scroll-margin-top: 100px;
+            scroll-margin-top: 80px;
         }
         
         h1, h2, h3, h4, .logo-font { 
@@ -35,7 +34,7 @@
             text-transform: uppercase;
         }
 
-        /* 導覽列 Logo */
+        /* 導覽列 Logo 調整 */
         .logo-tracking { letter-spacing: 0.45em; margin-right: -0.45em; }
         .sub-logo-tracking { letter-spacing: 0.165em; margin-right: -0.165em; }
 
@@ -83,7 +82,6 @@
             transform: translateY(-3px);
         }
 
-        /* 強制左對齊與統一間距 */
         .content-p {
             line-height: 1.8;
             text-align: left;
@@ -135,16 +133,26 @@
         .nav-scrolled {
             background-color: var(--brand-green);
             color: var(--brand-beige);
-            padding: 0.8rem 3rem !important;
+            padding: 0.8rem 2rem !important;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
-        /* 確保捲動後連結顏色正確 */
-        .nav-scrolled a {
+        .nav-scrolled a, .nav-scrolled button {
             color: var(--brand-beige);
         }
 
-        /* 聯繫卡片樣式優化 */
+        /* 手機選單 Overly */
+        #mobile-menu {
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+            background-color: var(--brand-green);
+            color: var(--brand-beige);
+        }
+        #mobile-menu.hidden-menu {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         .contact-card {
             display: flex;
             align-items: center;
@@ -176,42 +184,63 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 
-<body>
+<body class="overflow-x-hidden">
 
     <!-- 導覽列 -->
-    <nav class="fixed w-full z-50 px-8 md:px-16 py-8 flex justify-between items-center transition-all duration-500" id="main-nav">
-        <div class="flex flex-col items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-            <span class="logo-font text-2xl font-800 logo-tracking leading-none">LE FUSION</span>
-            <span class="text-[8px] sub-logo-tracking font-bold mt-1.5 opacity-80 whitespace-nowrap uppercase">FRETTE PROJECT PARTNER</span>
+    <nav class="fixed w-full z-50 px-6 md:px-16 py-8 flex justify-between items-center transition-all duration-500" id="main-nav">
+        <div class="flex flex-col items-start md:items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <span class="logo-font text-xl md:text-2xl font-800 logo-tracking leading-none">LE FUSION</span>
+            <span class="text-[7px] md:text-[8px] sub-logo-tracking font-bold mt-1 md:mt-1.5 opacity-80 whitespace-nowrap uppercase">FRETTE PROJECT PARTNER</span>
         </div>
         
-        <!-- 導覽連結 -->
+        <!-- 桌面版導覽 -->
         <div class="hidden lg:flex gap-10 items-center">
             <a href="#about" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">品牌理念</a>
             <a href="#sectors" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">服務對象</a>
             <a href="#professional" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">專業優勢</a>
             <a href="#contact" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">聯繫我們</a>
         </div>
+
+        <!-- 手機版漢堡按鈕 -->
+        <button class="lg:hidden p-2 focus:outline-none" id="menu-toggle" aria-label="開啟選單">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
     </nav>
+
+    <!-- 手機版全螢幕選單 -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] flex flex-col items-center justify-center hidden-menu">
+        <button class="absolute top-8 right-8 p-2" id="menu-close">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="flex flex-col gap-12 text-center">
+            <a href="#about" class="mobile-link text-2xl font-bold tracking-[0.3em] uppercase">品牌理念</a>
+            <a href="#sectors" class="mobile-link text-2xl font-bold tracking-[0.3em] uppercase">服務對象</a>
+            <a href="#professional" class="mobile-link text-2xl font-bold tracking-[0.3em] uppercase">專業優勢</a>
+            <a href="#contact" class="mobile-link text-2xl font-bold tracking-[0.3em] uppercase">聯繫我們</a>
+        </div>
+        <div class="absolute bottom-12 text-[8px] tracking-[0.4em] opacity-40 uppercase">
+            LE FUSION / FRETTE PARTNER
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <header class="min-h-screen flex flex-col justify-center px-8 md:px-24 pt-20 overflow-hidden">
         <div class="max-w-7xl mx-auto w-full reveal">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
                 <div class="lg:col-span-7">
-                    <h1 class="text-6xl md:text-[9rem] font-800 leading-[0.85] tracking-tighter">
+                    <h1 class="text-5xl md:text-[9rem] font-800 leading-[0.95] md:leading-[0.85] tracking-tighter">
                         HERITAGE<br>
                         ELEGANCE<br>
                         COMFORT
                     </h1>
                 </div>
-                <div class="lg:col-span-5 flex flex-col items-end text-right">
+                <div class="lg:col-span-5 flex flex-col items-start lg:items-end text-left lg:text-right">
                     <div class="w-24 h-[1.5px] bg-brand-green mb-10 opacity-60"></div>
                     <div class="mb-12 space-y-4">
                         <p class="text-xl md:text-2xl font-medium tracking-wider">
                             以義大利百年織品的極致觸感，
                         </p>
-                        <p class="text-xl md:text-2xl font-medium tracking-wider translate-x-[-2rem] md:translate-x-[-3rem]">
+                        <p class="text-xl md:text-2xl font-medium tracking-wider lg:translate-x-[-3rem]">
                             成就專業空間的優雅價值。
                         </p>
                     </div>
@@ -225,9 +254,9 @@
     </header>
 
     <!-- 品牌理念 (About) -->
-    <section id="about" class="py-40 px-8 md:px-24 bg-brand-white">
+    <section id="about" class="py-32 md:py-40 px-8 md:px-24 bg-brand-white">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-20">
+            <div class="grid lg:grid-cols-2 gap-16 md:gap-20">
                 <div class="reveal">
                     <header class="section-header">
                         <span class="section-tag">HERITAGE / 品牌理念</span>
@@ -237,7 +266,7 @@
                 </div>
                 
                 <div class="flex flex-col justify-end reveal" style="transition-delay: 0.2s">
-                    <div class="space-y-10">
+                    <div class="space-y-8 md:space-y-10">
                         <p class="content-p text-brand-green opacity-90">
                             Le Fusion 作為義大利百年織品 Frette 的官方專案夥伴，致力於將頂級工藝導入多元空間。從國際飯店到私人住宅，我們不僅提供產品，更是在為每一寸觸感注入無可取代的品牌深度。
                         </p>
@@ -251,7 +280,7 @@
     </section>
 
     <!-- 服務對象 (Sectors) -->
-    <section id="sectors" class="py-40 px-8 md:px-24">
+    <section id="sectors" class="py-32 md:py-40 px-8 md:px-24">
         <div class="max-w-7xl mx-auto">
             <header class="section-header reveal">
                 <span class="section-tag">EXPERTISE / 服務對象</span>
@@ -301,9 +330,9 @@
     </section>
 
     <!-- 專業優勢 (Advantage) -->
-    <section id="professional" class="py-40 px-8 md:px-24 bg-brand-white">
+    <section id="professional" class="py-32 md:py-40 px-8 md:px-24 bg-brand-white">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-12 gap-20">
+            <div class="grid lg:grid-cols-12 gap-16 md:gap-20">
                 <div class="lg:col-span-4 reveal">
                     <header class="section-header">
                         <span class="section-tag">ADVANTAGE / 專業優勢</span>
@@ -312,9 +341,8 @@
                     </header>
                 </div>
                 
-                <div class="lg:col-span-8 grid md:grid-cols-2 gap-x-12 gap-y-16 reveal" style="transition-delay: 0.2s">
+                <div class="lg:col-span-8 grid md:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-16 reveal" style="transition-delay: 0.2s">
                     <div class="space-y-6">
-                        <!-- 優化名稱：由「規格對接顧問」改為「織品規格專家」 -->
                         <h4 class="text-xl font-bold border-l-4 border-brand-green pl-6 py-1">織品規格專家</h4>
                         <p class="opacity-80 content-p">
                             協助設計與採購團隊精準對接原廠產品代碼，確保面料等級、織數與專案預算達到最完美的平衡。
@@ -338,9 +366,9 @@
     </section>
 
     <!-- 聯繫我們 (Connect) -->
-    <section id="contact" class="py-40 px-8 md:px-24">
+    <section id="contact" class="py-32 md:py-40 px-8 md:px-24">
         <div class="max-w-7xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-24 items-start reveal">
+            <div class="grid lg:grid-cols-2 gap-16 md:gap-24 items-start reveal">
                 <header class="section-header">
                     <span class="section-tag">CONNECT / 聯繫我們</span>
                     <h2 class="section-title">開啟合作</h2>
@@ -388,6 +416,7 @@
     <script>
         lucide.createIcons();
         
+        // 頁面進入動畫
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -398,6 +427,7 @@
         
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // 導覽列捲動效果
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('main-nav');
             if (nav) {
@@ -409,6 +439,27 @@
             }
         });
 
+        // 手機選單開關邏輯
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden-menu');
+            document.body.classList.toggle('overflow-hidden');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuClose.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // 平滑捲動
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
