@@ -1,75 +1,176 @@
 
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Le Fusion | Frette Project Partner</title>
-
+    <title>Le Fusion | Frette 專案合作夥伴</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            --primary: #0a1d2e;
-            --accent: #4c5445;
-            --beige: #e1d6c0;
-        }
-        
-        html, body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background-color: var(--beige);
-            scroll-behavior: smooth;
+            --brand-green: #4B5344;   /* LOGO 墨綠 */
+            --brand-beige: #D2C5B1;   /* LOGO 背景米色 */
+            --brand-white: #FFFFFF;
         }
         
         body { 
-            font-family: 'Inter', sans-serif; 
-            color: var(--primary);
-            line-height: 1.8;
-            letter-spacing: 0.02em;
+            font-family: 'Noto Sans TC', sans-serif; 
+            background-color: var(--brand-beige);
+            color: var(--brand-green);
             -webkit-font-smoothing: antialiased;
         }
         
-        .font-logo { font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; }
-        .font-title { font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; }
-        .quote-font { font-family: 'Playfair Display', serif; }
+        /* 確保點擊跳轉時，標題不會被固定導覽列遮擋 */
+        section {
+            scroll-margin-top: 100px;
+        }
         
+        h1, h2, h3, h4, .logo-font { 
+            font-family: 'Montserrat', sans-serif; 
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        /* 導覽列 Logo */
+        .logo-tracking { letter-spacing: 0.45em; margin-right: -0.45em; }
+        .sub-logo-tracking { letter-spacing: 0.165em; margin-right: -0.165em; }
+
         .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .section-tag {
-            font-size: 10px;
+        /* 按鈕規範 */
+        .btn-primary {
+            background-color: var(--brand-green);
+            color: var(--brand-beige);
+            padding: 1rem 2.8rem;
             font-weight: 700;
-            letter-spacing: 0.4em;
-            color: var(--accent);
-            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+            font-size: 0.7rem;
+            border: 1px solid var(--brand-green);
+        }
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
-        .quote-line {
-            height: 1px;
-            background-color: var(--accent);
-            width: 40px;
-            opacity: 0.2;
+        .btn-outline {
+            border: 1px solid var(--brand-green);
+            color: var(--brand-green);
+            padding: 1rem 2.8rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+            font-size: 0.7rem;
+        }
+        .btn-outline:hover {
+            background-color: var(--brand-green);
+            color: var(--brand-beige);
+            transform: translateY(-3px);
+        }
+
+        /* 強制左對齊與統一間距 */
+        .content-p {
+            line-height: 1.8;
+            text-align: left;
+            word-break: normal;
+            overflow-wrap: break-word;
+            letter-spacing: 0.03em;
+            font-size: 0.95rem;
+        }
+
+        /* 標題系統 */
+        .section-header {
+            margin-bottom: 5rem;
+        }
+        .section-tag {
+            font-size: 11px;
+            letter-spacing: 0.5em;
+            font-weight: 700;
+            opacity: 0.5;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+        .section-subtitle {
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.7;
+            letter-spacing: 0.1em;
+        }
+        @media (min-width: 768px) {
+            .section-title { font-size: 3.8rem; }
+        }
+
+        /* 服務項目 */
+        .service-item {
+            border-bottom: 1px solid rgba(75, 83, 68, 0.1);
+            padding: 2.5rem 0;
+            transition: all 0.4s ease;
+        }
+        .service-item:hover {
+            padding-left: 1rem;
+            border-bottom-color: var(--brand-green);
+        }
+
+        .nav-scrolled {
+            background-color: var(--brand-green);
+            color: var(--brand-beige);
+            padding: 0.8rem 3rem !important;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
         
+        /* 確保捲動後連結顏色正確 */
+        .nav-scrolled a {
+            color: var(--brand-beige);
+        }
+
+        /* 聯繫卡片樣式優化 */
         .contact-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2.5rem;
+            background-color: var(--brand-white);
+            border: 1px solid rgba(75, 83, 68, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
         }
         .contact-card:hover {
-            background-color: rgba(255, 255, 255, 0.6) !important;
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: var(--brand-green);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(75, 83, 68, 0.05);
+        }
+        .contact-card i {
+            width: 24px;
+            height: 24px;
+            opacity: 0.3;
+            transition: all 0.4s ease;
+        }
+        .contact-card:hover i {
+            opacity: 1;
+            transform: scale(1.1);
         }
     </style>
 <link rel="stylesheet" href="/index.css">
@@ -77,139 +178,251 @@
 
 <body>
 
+    <!-- 導覽列 -->
+    <nav class="fixed w-full z-50 px-8 md:px-16 py-8 flex justify-between items-center transition-all duration-500" id="main-nav">
+        <div class="flex flex-col items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <span class="logo-font text-2xl font-800 logo-tracking leading-none">LE FUSION</span>
+            <span class="text-[8px] sub-logo-tracking font-bold mt-1.5 opacity-80 whitespace-nowrap uppercase">FRETTE PROJECT PARTNER</span>
+        </div>
+        
+        <!-- 導覽連結 -->
+        <div class="hidden lg:flex gap-10 items-center">
+            <a href="#about" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">品牌理念</a>
+            <a href="#sectors" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">服務對象</a>
+            <a href="#professional" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">專業優勢</a>
+            <a href="#contact" class="text-[10px] font-bold tracking-[0.2em] hover:opacity-50 transition-opacity">聯繫我們</a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
-    <section class="min-h-[70vh] flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center">
-        <div class="max-w-4xl mx-auto reveal">
-            <span class="section-tag mb-8 block">Project Cooperation Partner</span>
-            <h1 class="text-3xl lg:text-6xl font-logo mb-10 text-[#0a1d2e]">
-                LE FUSION
-            </h1>
-            <div class="w-12 h-[1px] bg-[#4c5445] mx-auto mb-10 opacity-30"></div>
-            <p class="text-[13px] md:text-base text-[#4c5445] font-medium max-w-2xl mx-auto tracking-[0.15em] leading-loose opacity-80">
-                專注於 Frette 義大利頂級寢具與織品之專案合作。<br class="hidden md:block">
-                我們以專業顧問的角色，為頂級飯店、住宅專案與私人會所提供精確的寢具配置建議與執行。
-            </p>
+    <header class="min-h-screen flex flex-col justify-center px-8 md:px-24 pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto w-full reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+                <div class="lg:col-span-7">
+                    <h1 class="text-6xl md:text-[9rem] font-800 leading-[0.85] tracking-tighter">
+                        HERITAGE<br>
+                        ELEGANCE<br>
+                        COMFORT
+                    </h1>
+                </div>
+                <div class="lg:col-span-5 flex flex-col items-end text-right">
+                    <div class="w-24 h-[1.5px] bg-brand-green mb-10 opacity-60"></div>
+                    <div class="mb-12 space-y-4">
+                        <p class="text-xl md:text-2xl font-medium tracking-wider">
+                            以義大利百年織品的極致觸感，
+                        </p>
+                        <p class="text-xl md:text-2xl font-medium tracking-wider translate-x-[-2rem] md:translate-x-[-3rem]">
+                            成就專業空間的優雅價值。
+                        </p>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#about" class="btn-primary">探索理念</a>
+                        <a href="#contact" class="btn-outline">立即諮詢</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </header>
 
-    <!-- About Section -->
-    <section class="py-24 px-6 md:px-10 bg-white/10">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <!-- 品牌理念 (About) -->
+    <section id="about" class="py-40 px-8 md:px-24 bg-brand-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20">
                 <div class="reveal">
-                    <span class="section-tag mb-6 block">Our Vision</span>
-                    <h2 class="text-2xl font-title mb-10 text-[#0a1d2e]">關於 Le Fusion</h2>
-                    <div class="space-y-8 text-[#4c5445] text-[14px] md:text-base font-medium opacity-90 leading-loose">
-                        <p>
-                            Le Fusion 是一家立足於寢具美學與 B2B 專案實務的策劃公司。我們不僅是義大利百年品牌 Frette 在專業專案領域的重要夥伴，更是建築團隊與室內設計團隊值得信賴的諮詢顧問。
+                    <header class="section-header">
+                        <span class="section-tag">HERITAGE / 品牌理念</span>
+                        <h2 class="section-title">織就經典</h2>
+                        <p class="section-subtitle">連接百年工藝與當代空間的織品顧問</p>
+                    </header>
+                </div>
+                
+                <div class="flex flex-col justify-end reveal" style="transition-delay: 0.2s">
+                    <div class="space-y-10">
+                        <p class="content-p text-brand-green opacity-90">
+                            Le Fusion 作為義大利百年織品 Frette 的官方專案夥伴，致力於將頂級工藝導入多元空間。從國際飯店到私人住宅，我們不僅提供產品，更是在為每一寸觸感注入無可取代的品牌深度。
                         </p>
-                        <p>
-                            在每一個合作案中，我們負責從原廠規格釐清、寢具美學搭配到後續的進場統籌。我們深信，頂級寢具賦予空間的是一種靜謐且充滿質感的感官體驗。
+                        <p class="content-p text-brand-green opacity-90">
+                            透過原廠資源的深度整合與在地專案經驗，我們協助合作夥伴實現從規格對接到美學配置的全方位願景，讓「奢華」轉化為真實可感的空間語彙，成就卓越的場域價值。
                         </p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Quote Block -->
-                <div class="reveal bg-white/40 backdrop-blur-xl p-10 md:p-20 border border-white/30 flex flex-col rounded-sm relative" style="transition-delay: 0.2s">
-                    <div class="quote-line mb-10 self-start"></div>
-                    <div class="quote-font flex flex-col gap-6 text-[#4c5445]">
-                        <span class="text-lg md:text-2xl font-semibold italic tracking-wider self-start">
-                            我們相信，
-                        </span>
-                        <span class="text-lg md:text-2xl font-semibold italic tracking-wider leading-relaxed self-end text-right">
-                            真正的奢華應是靜謐且充滿質感的溫度。
-                        </span>
+    <!-- 服務對象 (Sectors) -->
+    <section id="sectors" class="py-40 px-8 md:px-24">
+        <div class="max-w-7xl mx-auto">
+            <header class="section-header reveal">
+                <span class="section-tag">EXPERTISE / 服務對象</span>
+                <h2 class="section-title">賦予空間生命</h2>
+                <p class="section-subtitle">為多元空間導入極致觸感</p>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-4">
+                <div class="service-item reveal">
+                    <div class="flex items-start gap-8">
+                        <span class="text-[10px] font-bold opacity-30 mt-2">01</span>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">國際精品飯店</h3>
+                            <p class="opacity-75 content-p">符合國際五星運營標準的床品與巾類專案配置，精準提升客房整體的觸覺層次與品牌印象。</p>
+                        </div>
                     </div>
-                    <div class="quote-line mt-10 self-end"></div>
+                </div>
+                <div class="service-item reveal" style="transition-delay: 0.1s">
+                    <div class="flex items-start gap-8">
+                        <span class="text-[10px] font-bold opacity-30 mt-2">02</span>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">住宅建案與實品屋</h3>
+                            <p class="opacity-75 content-p">協助建設與設計團隊提升實品屋的質感深度，透過織品美學展現高品質生活場景。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item reveal" style="transition-delay: 0.2s">
+                    <div class="flex items-start gap-8">
+                        <span class="text-[10px] font-bold opacity-30 mt-2">03</span>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">精選民宿與會所</h3>
+                            <p class="opacity-75 content-p">為具備獨特靈魂的空間匹配 Frette 織品美學，強化住客與場域之間的情緒連結。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-item reveal" style="transition-delay: 0.3s">
+                    <div class="flex items-start gap-8">
+                        <span class="text-[10px] font-bold opacity-30 mt-2">04</span>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">頂級 SPA 與月子中心</h3>
+                            <p class="opacity-75 content-p">為極致休憩環境提供最細膩的面料守護，讓每一次觸碰都成為安心且舒適的品牌記憶。</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Scope -->
-    <section class="py-32 px-6 md:px-10">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-24 reveal">
-                <span class="section-tag mb-4 block">B2B Solutions</span>
-                <h2 class="text-xl font-title text-[#0a1d2e]">專案範疇</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
-                <div class="reveal group" style="transition-delay: 0s">
-                    <div class="w-12 h-12 rounded-full bg-white/50 flex items-center justify-center mb-8 transition-transform group-hover:scale-110">
-                        <i data-lucide="hotel" class="text-[#4c5445] w-5 h-5"></i>
-                    </div>
-                    <h4 class="text-base font-bold tracking-[0.2em] mb-4 text-[#4c5445] uppercase">Hotels</h4>
-                    <p class="text-sm text-[#4c5445] font-medium opacity-70 leading-relaxed">
-                        飯店配置：提供精品旅宿之 Frette 專案規劃，優化客房層次的寢具細節。
-                    </p>
+    <!-- 專業優勢 (Advantage) -->
+    <section id="professional" class="py-40 px-8 md:px-24 bg-brand-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-12 gap-20">
+                <div class="lg:col-span-4 reveal">
+                    <header class="section-header">
+                        <span class="section-tag">ADVANTAGE / 專業優勢</span>
+                        <h2 class="section-title">卓越執行</h2>
+                        <p class="section-subtitle">專業的專案協作與技術支援</p>
+                    </header>
                 </div>
-
-                <div class="reveal group" style="transition-delay: 0.1s">
-                    <div class="w-12 h-12 rounded-full bg-white/50 flex items-center justify-center mb-8 transition-transform group-hover:scale-110">
-                        <i data-lucide="building-2" class="text-[#4c5445] w-5 h-5"></i>
+                
+                <div class="lg:col-span-8 grid md:grid-cols-2 gap-x-12 gap-y-16 reveal" style="transition-delay: 0.2s">
+                    <div class="space-y-6">
+                        <!-- 優化名稱：由「規格對接顧問」改為「織品規格專家」 -->
+                        <h4 class="text-xl font-bold border-l-4 border-brand-green pl-6 py-1">織品規格專家</h4>
+                        <p class="opacity-80 content-p">
+                            協助設計與採購團隊精準對接原廠產品代碼，確保面料等級、織數與專案預算達到最完美的平衡。
+                        </p>
                     </div>
-                    <h4 class="text-base font-bold tracking-[0.2em] mb-4 text-[#4c5445] uppercase">Residences</h4>
-                    <p class="text-sm text-[#4c5445] font-medium opacity-70 leading-relaxed">
-                        建案開發：協助將頂級寢具美學融入實品屋中，強化空間的專業價值感。
-                    </p>
-                </div>
-
-                <div class="reveal group" style="transition-delay: 0.2s">
-                    <div class="w-12 h-12 rounded-full bg-white/50 flex items-center justify-center mb-8 transition-transform group-hover:scale-110">
-                        <i data-lucide="briefcase" class="text-[#4c5445] w-5 h-5"></i>
+                    <div class="space-y-6">
+                        <h4 class="text-xl font-bold border-l-4 border-brand-green pl-6 py-1">美學配置統籌</h4>
+                        <p class="opacity-80 content-p">
+                            根據空間風格與光影層次，提供專屬織紋與色彩方案，讓織品成為空間敘事中不可或缺的視覺焦點。
+                        </p>
                     </div>
-                    <h4 class="text-base font-bold tracking-[0.2em] mb-4 text-[#4c5445] uppercase">Consultancy</h4>
-                    <p class="text-sm text-[#4c5445] font-medium opacity-70 leading-relaxed">
-                        專業諮詢：為設計師提供精確的技術顧問，確保寢具細節與風格完美對接。
-                    </p>
+                    <div class="space-y-6 md:col-span-2">
+                        <h4 class="text-xl font-bold border-l-4 border-brand-green pl-6 py-1">專業進場管理</h4>
+                        <p class="opacity-80 content-p">
+                            嚴格管控跨國採購排程與物流進度，並提供現場鋪設指導與保養諮詢，確保最終成果完美呈現在客戶面前。
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section class="py-32 px-6 md:px-10 pb-48 bg-white/10">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-20 reveal">
-                <span class="section-tag mb-4 block">Contact</span>
-                <h2 class="text-xl font-title text-[#0a1d2e]">聯繫我們</h2>
-            </div>
+    <!-- 聯繫我們 (Connect) -->
+    <section id="contact" class="py-40 px-8 md:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-start reveal">
+                <header class="section-header">
+                    <span class="section-tag">CONNECT / 聯繫我們</span>
+                    <h2 class="section-title">開啟合作</h2>
+                    <p class="section-subtitle">期待與您共同打造卓越的空間體驗</p>
+                </header>
+                
+                <div class="flex flex-col gap-5 w-full">
+                    <a href="https://line.me/ti/p/@lefusion" target="_blank" class="contact-card">
+                        <div>
+                            <span class="text-[10px] font-bold opacity-40 block mb-1 tracking-[0.3em]">LINE OFFICIAL</span>
+                            <span class="text-xl md:text-2xl font-bold">@lefusion</span>
+                        </div>
+                        <i data-lucide="message-circle"></i>
+                    </a>
+                    
+                    <a href="mailto:tw.lefusion@gmail.com" class="contact-card">
+                        <div>
+                            <span class="text-[10px] font-bold opacity-40 block mb-1 tracking-[0.3em]">EMAIL ADDRESS</span>
+                            <span class="text-sm md:text-lg font-bold">tw.lefusion@gmail.com</span>
+                        </div>
+                        <i data-lucide="mail"></i>
+                    </a>
 
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 reveal">
-                <a href="https://line.me/ti/p/@lefusion" target="_blank" class="contact-card bg-white/30 backdrop-blur-md p-12 flex flex-col items-center group rounded-sm">
-                    <i data-lucide="message-circle" class="mb-8 text-[#4c5445] w-6 h-6 opacity-70"></i>
-                    <span class="text-[9px] font-bold tracking-[0.4em] text-[#4c5445]/50 uppercase mb-3">Line</span>
-                    <span class="text-sm font-semibold text-[#0a1d2e]">@lefusion</span>
-                </a>
-
-                <a href="mailto:tw.lefusion@gmail.com" class="contact-card bg-white/30 backdrop-blur-md p-12 flex flex-col items-center group rounded-sm" style="transition-delay: 0.1s">
-                    <i data-lucide="mail" class="mb-8 text-[#4c5445] w-6 h-6 opacity-70"></i>
-                    <span class="text-[9px] font-bold tracking-[0.4em] text-[#4c5445]/50 uppercase mb-3">Email</span>
-                    <span class="text-sm font-semibold text-[#0a1d2e] break-all px-2 text-center">tw.lefusion@gmail.com</span>
-                </a>
-
-                <a href="tel:0917663565" class="contact-card bg-white/30 backdrop-blur-md p-12 flex flex-col items-center group rounded-sm" style="transition-delay: 0.2s">
-                    <i data-lucide="phone" class="mb-8 text-[#4c5445] w-6 h-6 opacity-70"></i>
-                    <span class="text-[9px] font-bold tracking-[0.4em] text-[#4c5445]/50 uppercase mb-3">Phone</span>
-                    <span class="text-sm font-semibold text-[#0a1d2e]">0917-663-565</span>
-                </a>
+                    <a href="tel:0917-663-565" class="contact-card">
+                        <div>
+                            <span class="text-[10px] font-bold opacity-40 block mb-1 tracking-[0.3em]">PHONE NUMBER</span>
+                            <span class="text-xl md:text-2xl font-bold">0917-663-565</span>
+                        </div>
+                        <i data-lucide="phone"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center border-t border-black/5">
-        <p class="section-tag opacity-30">© 2024 Le Fusion Studio. Partnered with Frette.</p>
+    <!-- Footer -->
+    <footer class="py-16 px-8 bg-brand-green text-brand-beige">
+        <div class="max-w-7xl mx-auto flex justify-center">
+            <div class="text-[10px] tracking-widest opacity-30 uppercase text-center">
+                © 2025 LE FUSION LTD. ALL RIGHTS RESERVED.
+            </div>
+        </div>
     </footer>
 
     <script>
         lucide.createIcons();
+        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.1 });
+        
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (nav) {
+                if (window.scrollY > 80) {
+                    nav.classList.add('nav-scrolled');
+                } else {
+                    nav.classList.remove('nav-scrolled');
+                }
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 
 <script type="module" src="/index.tsx"></script>
