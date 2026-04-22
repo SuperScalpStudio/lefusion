@@ -3,15 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Le Fusion | Frette 專案合作夥伴</title>
     
+    <title>Le Fusion | Frette 頂級寢具到府顧問服務</title>
+    
+    <meta name="description" content="LE FUSION 樂富生活為義大利百年頂級寢具 Frette 官方專案夥伴，提供全台灣尊榮到府顧問服務。專業配置五星級飯店床單、毛巾與豪宅空間織品規劃。">
+
     <link rel="icon" href="Le_Fusion_LOGO.png" type="image/png">
     <link rel="apple-touch-icon" href="Le_Fusion_LOGO.png">
     
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Le Fusion | Frette 專案合作夥伴">
-    <meta property="og:description" content="以義大利百年織品的極致觸感，成就專業空間的優雅價值。">
+    <meta property="og:title" content="Le Fusion | Frette 頂級寢具到府顧問服務">
+    <meta property="og:description" content="LE FUSION 提供全台灣尊榮到府顧問服務，專業配置 Frette 五星級飯店床單與頂級織品。">
     <meta property="og:image" content="Le_Fusion_LOGO.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "樂富生活 LE FUSION",
+      "alternateName": "LE FUSION",
+      "description": "LE FUSION 樂富生活為義大利百年頂級寢具 Frette 官方專案夥伴，提供全台灣尊榮到府顧問服務，專業配置五星飯店床單與豪宅織品規劃。",
+      "url": "https://你的網址.vercel.app",
+      "logo": "https://你的網址.vercel.app/Le_Fusion_LOGO.png",
+      "telephone": "0917-663-565",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "台北市",
+        "addressRegion": "台灣",
+        "addressCountry": "TW"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "TW"
+      },
+      "serviceType": ["頂級寢具配置", "飯店床單規劃", "豪宅織品顧問"]
+    }
+    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -19,8 +46,8 @@
 
     <style>
         :root {
-            --brand-green: #4B5344;   /* LOGO 墨綠 */
-            --brand-beige: #D2C5B1;   /* LOGO 背景米色 */
+            --brand-green: #4B5344;
+            --brand-beige: #D2C5B1;
             --brand-white: #FFFFFF;
         }
         
@@ -31,9 +58,7 @@
             -webkit-font-smoothing: antialiased;
         }
         
-        section {
-            scroll-margin-top: 80px;
-        }
+        section { scroll-margin-top: 80px; }
         
         h2, h3, h4, .logo-font { 
             font-family: 'Montserrat', sans-serif; 
@@ -47,7 +72,6 @@
             letter-spacing: -0.01em;
         }
 
-        /* 恢復舊版 Logo 樣式：純文字排版 */
         .logo-container {
             display: flex;
             flex-direction: column;
@@ -64,9 +88,7 @@
             margin-right: -0.25em;
             font-family: 'Montserrat', sans-serif;
         }
-        @media (min-width: 768px) {
-            .logo-main { font-size: 1.5rem; }
-        }
+        @media (min-width: 768px) { .logo-main { font-size: 1.5rem; } }
 
         .logo-sub {
             font-size: 6px;
@@ -78,9 +100,7 @@
             margin-right: -0.1em;
             font-family: 'Montserrat', sans-serif;
         }
-        @media (min-width: 768px) {
-            .logo-sub { font-size: 8px; margin-top: 7px; }
-        }
+        @media (min-width: 768px) { .logo-sub { font-size: 8px; margin-top: 7px; } }
 
         .section-header { margin-bottom: 4rem; }
         .section-tag {
@@ -118,10 +138,7 @@
             transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         .btn-primary {
             background-color: var(--brand-green);
@@ -152,19 +169,9 @@
             font-size: 0.7rem;
             text-transform: uppercase;
         }
-        .btn-outline:hover {
-            background-color: var(--brand-green);
-            color: var(--brand-beige);
-            transform: translateY(-3px);
-        }
+        .btn-outline:hover { background-color: var(--brand-green); color: var(--brand-beige); transform: translateY(-3px); }
 
-        .content-p {
-            line-height: 1.9;
-            text-align: left;
-            word-break: normal;
-            letter-spacing: 0.02em;
-            font-size: 0.95rem;
-        }
+        .content-p { line-height: 1.9; text-align: left; word-break: normal; letter-spacing: 0.02em; font-size: 0.95rem; }
 
         .nav-scrolled {
             background-color: var(--brand-green);
